@@ -1,0 +1,19 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+  xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+  xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
+
+  <f:entry description="${it.description}">
+    <div name="parameter">
+      <j:set var="instance" value="${it}" />
+      <j:set var="descriptor" value="${it.descriptor}" />
+      <input type="hidden" name="name" value="${it.name}" />
+	  <input type="hidden" name="jobName" value="${it.jobName}" /><br />
+      Build ID
+      <f:select field="buildId" title="Build no. for ${it.jobName}" help="Select the appropriate build that contains the archived artifact that you are interested in"/><br />
+      Artifact
+      <f:select field="artifact" title="Artifacts available for the above build for ${it.jobName}" help="This is the list of available archived artifacts for the ${it.jobName} and ${it.buildId}.  The full path of this artifact will be set as the parameter value"/><br/>
+      <div style="display:none;"><f:select field="value" title="hidden" /></div>
+    </div>
+  </f:entry>
+</j:jelly>
